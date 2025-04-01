@@ -1,0 +1,3 @@
+CS101,Intro to Computer Science,Mon/Wed/Fri,10:00 AM,11:30 AM,DP 101
+MATH201,Calculus II,Mon/Wed,12:00 PM,1:30 PM,HOH 202
+PHYS150,Physics I,Tue/Thu,9:00 AM,10:30 AM,MC 303
