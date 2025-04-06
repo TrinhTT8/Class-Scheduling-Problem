@@ -11,27 +11,29 @@ void printClassDetails(const unordered_map<string, ClassInfo>& classes) {
 
     cout << "\nClasses:\n";
     for (auto it = classes.begin(); it != classes.end(); ++it) {
-		string courseID = it->second.courseID;
-		string name = it->second.name;
-		string startTime = it->second.startTime;
-		string endTime = it->second.endTime;
-		vector<int> days = it->second.days;
-		string location = it->second.location;
-		
-		cout << "- " << courseID << " - " << name << "\n";
-		cout << "  Time: " << startTime << " - " << endTime << "\n";
-		cout << "  Days: ";
-	    	for (int day: days) {
-            		switch (day) {
-                		case 1: cout << "Monday "; break;
-                		case 2: cout << "Tuesday "; break;
-                		case 3: cout << "Wednesday "; break;
-                		case 4: cout << "Thursday "; break;
-                		case 5: cout << "Friday "; break;
-				default: break;
-			}
-		}
-	cout << "  Location: " << location << "\n\n";
+        string courseID = it->second.courseID;
+        string name = it->second.name;
+        int startTime = it->second.startTime;
+        int endTime = it->second.endTime;
+        vector<int> days = it->second.days;
+        string location = it->second.location;
+
+        cout << "- " << courseID << " - " << name << "\n";
+        cout << "  Time: " << startTime / 100 << ":" << startTime % 100 
+	//display in HH:MM
+             << " - " << endTime / 100 << ":" << endTime % 100 << "\n"; 
+        cout << "  Days: ";
+        for (int day : days) {
+            switch (day) {
+                case 1: cout << "Monday "; break;
+                case 2: cout << "Tuesday "; break;
+                case 3: cout << "Wednesday "; break;
+                case 4: cout << "Thursday "; break;
+                case 5: cout << "Friday "; break;
+                default: break;
+            }
+        }
+        cout << "  Location: " << location << "\n\n";
     }
 }
 
@@ -42,25 +44,21 @@ void saveToFile(const unordered_map<string, ClassInfo>& classes, const string& f
         cout << "Error: Could not open file for saving.\n";
         return;
     }
-	
-	//iterates through  classes until end and saves to file
-    for (auto it = classes.begin(); it != classes.end(); ++it) {
-		string courseID = it->second.courseID;
-		string name = it->second.name;
-		vector<int> days = it->second.days;
-		string startTime = it->second.startTime;
-		string endTime = it->second.endTime;
-		string location = it->second.location;
 
-		outFile << courseID << ",";
-		outFile << name << ",";
-		outFile << days << ",";
-	    	for (int day : days) {
-			outFile << day << " ";
-		}
-		outFile << startTime << ",";
-		outFile << endTime << ",";
-		outFile << location << "\n";
+    // iterates through classes and saves to file
+    for (auto it = classes.begin(); it != classes.end(); ++it) {
+        string courseID = it->second.courseID;
+        string name = it->second.name;
+        vector<int> days = it->second.days;
+        int startTime = it->second.startTime;
+        int endTime = it->second.endTime;
+        string location = it->second.location;
+
+        outFile << courseID << "," << name << ",";
+        for (int day : days) {
+            outFile << day << " ";
+        }
+        outFile << startTime << "," << endTime << "," << location << "\n";
     }
     outFile.close();
     cout << "\nSchedule saved to " << filename << " successfully!\n";
@@ -74,21 +72,25 @@ void loadFromFile(unordered_map<string, ClassInfo>& classes, const string& filen
         return;
     }
 
-    string line, courseID, name, days, startTime, endTime, location;
+    string line, courseID, name, daysStr, location;
+    int startTime, endTime;
     while (getline(inFile, line)) {
         stringstream ss(line);
         getline(ss, courseID, ',');
         getline(ss, name, ',');
         getline(ss, daysStr, ',');
-        getline(ss, startTime, ',');
-        getline(ss, endTime, ',');
+        ss >> startTime;
+        ss.ignore();
+        ss >> endTime;
         getline(ss, location, ',');
+
         vector<int> days;
         stringstream daysStream(daysStr);
         int day;
         while (daysStream >> day) {
             days.push_back(day);
         }
+
         classes[courseID] = {courseID, name, days, startTime, endTime, location};
     }
     inFile.close();
@@ -98,16 +100,17 @@ void loadFromFile(unordered_map<string, ClassInfo>& classes, const string& filen
 // add a new class
 void addClass(unordered_map<string, ClassInfo>& classes) {
     cin.ignore();
-    string courseID, name, days, startTime, endTime, location;
-    
+    string courseID, name, daysStr, location;
+    int startTime, endTime;
+
     cout << "\nEnter course ID: ";
     getline(cin, courseID);
-    
+
     if (classes.find(courseID) != classes.end()) {
         cout << "This course ID already exists. Try a different ID.\n\n";
         return;
     }
-    
+
     cout << "Enter class name: ";
     getline(cin, name);
 
@@ -120,12 +123,13 @@ void addClass(unordered_map<string, ClassInfo>& classes) {
         days.push_back(day);
     }
 
-    cout << "Enter start time (10:00 AM): ";
-    getline(cin, startTime);
+    cout << "Enter start time (1030 for 10:30): ";
+    cin >> startTime;
 
-    cout << "Enter end time (11:30 AM): ";
-    getline(cin, endTime);
+    cout << "Enter end time (1100 for 11:00): ";
+    cin >> endTime;
 
+    cin.ignore();
     cout << "Enter location (DP 201): ";
     getline(cin, location);
 
