@@ -10,7 +10,7 @@ using namespace std;
 struct ClassInfo {
     string courseID;
     string name;
-    string days;      // Need to adjust this to vector type and represent using numbers (2=Monday, 3=Tuesday, etc.)
+    vector<int> days;
     string startTime;   // Need to adjust this to number type so we can compare
     string endTime;     // Need to adjust this to number type so we can compare
     string location; // future implementation
