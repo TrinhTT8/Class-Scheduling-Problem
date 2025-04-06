@@ -5,7 +5,7 @@
 // display all classes
 void printClassDetails(const unordered_map<string, ClassInfo>& classes) {
     if (classes.empty()) {
-        cout << "No classes available. Please add a class first.\n";
+        cout << "No classes available.\n";
         return;
     }
 
@@ -15,13 +15,23 @@ void printClassDetails(const unordered_map<string, ClassInfo>& classes) {
 		string name = it->second.name;
 		string startTime = it->second.startTime;
 		string endTime = it->second.endTime;
-		string days = it->second.days;
+		vector<int> days = it->second.days;
 		string location = it->second.location;
 		
 		cout << "- " << courseID << " - " << name << "\n";
 		cout << "  Time: " << startTime << " - " << endTime << "\n";
-		cout << "  Days: " << days << "\n";
-		cout << "  Location: " << location << "\n\n";
+		cout << "  Days: ";
+	    	for (int day: days) {
+            		switch (day) {
+                		case 2: cout << "Monday "; break;
+                		case 3: cout << "Tuesday "; break;
+                		case 4: cout << "Wednesday "; break;
+                		case 5: cout << "Thursday "; break;
+                		case 6: cout << "Friday "; break;
+				default: break;
+			}
+		}
+	cout << "  Location: " << location << "\n\n";
     }
 }
 
@@ -37,7 +47,7 @@ void saveToFile(const unordered_map<string, ClassInfo>& classes, const string& f
     for (auto it = classes.begin(); it != classes.end(); ++it) {
 		string courseID = it->second.courseID;
 		string name = it->second.name;
-		string days = it->second.days;
+		vector<int> days = it->second.days;
 		string startTime = it->second.startTime;
 		string endTime = it->second.endTime;
 		string location = it->second.location;
@@ -45,6 +55,9 @@ void saveToFile(const unordered_map<string, ClassInfo>& classes, const string& f
 		outFile << courseID << ",";
 		outFile << name << ",";
 		outFile << days << ",";
+	    	for (int day : days) {
+			outFile << day << " ";
+		}
 		outFile << startTime << ",";
 		outFile << endTime << ",";
 		outFile << location << "\n";
@@ -66,10 +79,16 @@ void loadFromFile(unordered_map<string, ClassInfo>& classes, const string& filen
         stringstream ss(line);
         getline(ss, courseID, ',');
         getline(ss, name, ',');
-        getline(ss, days, ',');
+        getline(ss, daysStr, ',');
         getline(ss, startTime, ',');
         getline(ss, endTime, ',');
         getline(ss, location, ',');
+        vector<int> days;
+        stringstream daysStream(daysStr);
+        int day;
+        while (daysStream >> day) {
+            days.push_back(day);
+        }
         classes[courseID] = {courseID, name, days, startTime, endTime, location};
     }
     inFile.close();
@@ -92,8 +111,14 @@ void addClass(unordered_map<string, ClassInfo>& classes) {
     cout << "Enter class name: ";
     getline(cin, name);
 
-    cout << "Enter days the class meets (Mon/Wed/Fri): ";
-    getline(cin, days);
+    cout << "Enter days the class meets (1=Mon, 2=Tue, 3=Wed, 4=Thu, 5=Fri, spaces between days): ";
+    getline(cin, daysStr);
+    vector<int> days;
+    stringstream ss(daysStr);
+    int day;
+    while (ss >> day) {
+        days.push_back(day);
+    }
 
     cout << "Enter start time (10:00 AM): ";
     getline(cin, startTime);
