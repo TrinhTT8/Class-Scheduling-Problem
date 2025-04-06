@@ -1,80 +1,76 @@
-CS101,Intro to Computer Science,Mon/Wed/Fri,9:00 AM,10:15 AM,ENGR 101  
-MATH201,Calculus II,Tue/Thu,10:30 AM,12:00 PM,SCI 204  
-PHYS150,Physics I,Mon/Wed,1:00 PM,2:30 PM,PHYS 210  
-CS105,Web Development,Tue/Thu,2:00 PM,3:15 PM,TECH 110  
-MATH101,Pre-Calculus,Mon/Wed/Fri,8:00 AM,9:00 AM,MATH 100  
-PHYS200,Engineering Physics I,Tue/Thu,9:00 AM,10:30 AM,PHYS 101  
-CHEM101,Intro to Chemistry,Mon/Wed,11:00 AM,12:15 PM,CHEM 100  
-ENG102,Intro to Literature,Mon/Wed/Fri,10:30 AM,11:30 AM,HUM 110  
-HIST101,World Civilizations,Tue/Thu,1:00 PM,2:30 PM,HIST 120  
-BIO101,Biology Basics,Mon/Wed,9:00 AM,10:15 AM,BIO 105  
-PSYC102,Developmental Psychology,Tue/Thu,3:30 PM,4:45 PM,PSY 100  
-ECON102,Microeconomics,Mon/Wed/Fri,11:00 AM,12:00 PM,ECON 110  
-CS202,Object-Oriented Programming,Tue/Thu,12:00 PM,1:30 PM,ENGR 120  
-ART110,Drawing I,Mon/Wed,2:30 PM,3:45 PM,ARTS 100  
-PHIL102,Moral Issues,Tue/Thu,9:00 AM,10:15 AM,PHIL 120  
-STAT220,Data Analytics I,Mon/Wed/Fri,1:00 PM,2:00 PM,MATH 110  
-CS220,Intro to Cybersecurity,Tue/Thu,4:00 PM,5:30 PM,TECH 140  
-MUS105,Intro to Guitar,Mon/Wed,12:30 PM,1:45 PM,MUSIC 200  
-SOC105,Cultural Sociology,Tue/Thu,10:30 AM,11:45 AM,SOC 120  
-CHEM201,Analytical Chemistry,Mon/Wed/Fri,9:00 AM,10:00 AM,CHEM 200  
-CS225,Mobile App Development,Tue/Thu,3:00 PM,4:30 PM,TECH 150  
-LING110,Intro to Syntax,Mon/Wed,1:00 PM,2:15 PM,LANG 100  
-GEOG110,Human Geography,Tue/Thu,11:00 AM,12:15 PM,GEO 120  
-CS250,Cloud Computing,Mon/Wed/Fri,2:00 PM,3:00 PM,ENGR 160  
-MATH230,Discrete Math,Tue/Thu,9:30 AM,11:00 AM,MATH 150  
-PHYS220,Electricity and Magnetism,Mon/Wed,11:30 AM,1:00 PM,PHYS 200  
-CHEM202,Instrumental Analysis,Tue/Thu,1:00 PM,2:30 PM,CHEM 201  
-ENG220,Modern Poetry,Mon/Wed,10:00 AM,11:15 AM,HUM 120  
-HIST240,Ancient Rome,Tue/Thu,2:00 PM,3:15 PM,HIST 130  
-BIO220,Ecology,Mon/Wed/Fri,12:00 PM,1:00 PM,BIO 210  
-PSYC220,Personality Psychology,Tue/Thu,4:00 PM,5:15 PM,PSY 230  
-ECON250,Behavioral Economics,Mon/Wed,3:00 PM,4:15 PM,ECON 230  
-CS240,Embedded Systems,Tue/Thu,10:30 AM,12:00 PM,TECH 170  
-ART220,Photography Basics,Mon/Wed,8:30 AM,9:45 AM,ARTS 130  
-PHIL250,Political Philosophy,Tue/Thu,1:00 PM,2:15 PM,PHIL 130  
-STAT230,Statistical Modeling,Mon/Wed/Fri,10:00 AM,11:00 AM,MATH 130  
-CS260,Intro to Robotics,Tue/Thu,9:00 AM,10:30 AM,ENGR 180  
-MUS210,Music History I,Mon/Wed,3:00 PM,4:15 PM,MUSIC 220  
-SOC220,Sociology of Family,Tue/Thu,12:30 PM,1:45 PM,SOC 140  
-CHEM230,Physical Chemistry I,Mon/Wed/Fri,1:00 PM,2:00 PM,CHEM 220  
-CS270,Game Programming,Tue/Thu,2:30 PM,4:00 PM,TECH 190  
-LING220,Semantics,Mon/Wed,9:00 AM,10:15 AM,LANG 140  
-GEOG210,Cartography,Tue/Thu,10:30 AM,12:00 PM,GEO 130  
-CS275,Full Stack Development,Mon/Wed/Fri,11:30 AM,12:30 PM,ENGR 200  
-MATH310,Number Theory,Tue/Thu,1:30 PM,3:00 PM,MATH 210  
-PHYS250,Thermodynamics,Mon/Wed,2:00 PM,3:30 PM,PHYS 220  
-CHEM240,Biochemistry,Tue/Thu,11:00 AM,12:30 PM,CHEM 230  
-ENG250,Contemporary Fiction,Mon/Wed,1:00 PM,2:15 PM,HUM 130  
-HIST250,History of Medicine,Tue/Thu,3:30 PM,4:45 PM,HIST 140  
-BIO260,Neuroscience,Tue/Thu,8:00 AM,9:15 AM,BIO 240  
-PSYC240,Social Psychology,Mon/Wed/Fri,10:00 AM,11:00 AM,PSY 240  
-ECON260,International Trade,Tue/Thu,12:00 PM,1:15 PM,ECON 240  
-CS280,Intro to Data Science,Mon/Wed,4:00 PM,5:30 PM,ENGR 210  
-ART230,Sculpture I,Tue/Thu,9:00 AM,10:30 AM,ARTS 140  
-PHIL260,Aesthetics,Mon/Wed,11:30 AM,12:45 PM,PHIL 150  
-STAT240,Advanced Statistics,Tue/Thu,1:00 PM,2:15 PM,MATH 140  
-CS290,DevOps Foundations,Mon/Wed/Fri,2:00 PM,3:00 PM,TECH 220  
-MUS220,Choral Ensemble,Tue/Thu,3:30 PM,5:00 PM,MUSIC 240  
-SOC240,Social Inequality,Tue/Thu,10:00 AM,11:15 AM,SOC 150  
-CHEM250,Environmental Chemistry,Mon/Wed/Fri,8:00 AM,9:00 AM,CHEM 250  
-CS295,Parallel Programming,Tue/Thu,4:00 PM,5:30 PM,ENGR 230  
-LING230,Pragmatics,Mon/Wed,2:00 PM,3:15 PM,LANG 150  
-GEOG230,Climate Change,Tue/Thu,12:30 PM,1:45 PM,GEO 140  
-CS300,Capstone Project I,Mon/Wed,9:00 AM,10:30 AM,TECH 300  
-MATH350,Topology,Tue/Thu,10:30 AM,12:00 PM,MATH 230  
-PHYS260,Classical Mechanics,Tue/Thu,3:00 PM,4:30 PM,PHYS 230  
-CHEM260,Organic Chemistry Lab,Mon/Wed,4:00 PM,6:00 PM,CHEM 260  
-ENG270,Science Fiction Lit,Tue/Thu,1:30 PM,2:45 PM,HUM 140  
-HIST260,Middle East History,Mon/Wed/Fri,11:00 AM,12:00 PM,HIST 150  
-BIO280,Botany,Tue/Thu,9:30 AM,11:00 AM,BIO 270  
-PSYC250,Abnormal Psychology,Mon/Wed,1:30 PM,2:45 PM,PSY 250  
-ECON270,Economics of Health,Tue/Thu,11:30 AM,12:45 PM,ECON 250  
-CS310,Big Data Systems,Mon/Wed/Fri,3:00 PM,4:00 PM,ENGR 240  
-ART240,Visual Design,Tue/Thu,2:00 PM,3:30 PM,ARTS 150  
-PHIL270,Philosophy of Science,Mon/Wed,10:00 AM,11:15 AM,PHIL 160  
-STAT250,Data Visualization,Tue/Thu,8:00 AM,9:30 AM,MATH 150  
-CS315,Blockchain Applications,Mon/Wed,3:30 PM,5:00 PM,TECH 250  
-MUS230,Electronic Music,Tue/Thu,12:00 PM,1:15 PM,MUSIC 250  
-SOC250,Urban Studies,Mon/Wed/Fri,9:30 AM,10:30 AM,SOC 160  
-CHEM270,Nanochemistry,Tue/Thu,1:30 PM,3:00 PM,CHEM 280  
+CS101,Intro to Computer Science,1 3 5,9:00 AM,10:15 AM,ENGR 101  
+MATH201,Calculus II,1 3,10:30 AM,12:00 PM,MATH 202  
+PHYS150,Physics I,2 4,8:00 AM,9:15 AM,PHYS 101  
+CS105,Web Development,2 4,1:00 PM,2:15 PM,ENGR 110  
+MATH101,Pre-Calculus,1 3 5,9:00 AM,10:00 AM,MATH 100  
+PHYS200,Engineering Physics I,2 4,10:00 AM,11:15 AM,PHYS 200  
+CHEM101,Intro to Chemistry,1 3,2:00 PM,3:15 PM,CHEM 100  
+ENG102,Intro to Literature,1 3 5,11:00 AM,12:00 PM,ENGR 115  
+HIST101,World Civilizations,2 4,3:00 PM,4:15 PM,HIST 120  
+BIO101,Biology Basics,1 3,9:30 AM,10:45 AM,SC 100  
+PSYC102,Developmental Psychology,2 4,8:00 AM,9:15 AM,PSY 100  
+ECON102,Microeconomics,1 3 5,12:00 PM,1:00 PM,ECON 110  
+CS202,Object-Oriented Programming,2 4,2:30 PM,3:45 PM,CS 101  
+ART110,Drawing I,1 3,3:00 PM,4:15 PM,ART 100  
+PHIL102,Moral Issues,2 4,9:00 AM,10:15 AM,PHIL 120  
+STAT220,Data Analytics I,1 3 5,2:00 PM,3:00 PM,MATH 130  
+CS220,Intro to Cybersecurity,2 4,11:00 AM,12:15 PM,CS 130  
+MUS105,Intro to Guitar,1 3,1:00 PM,2:15 PM,MUS 200  
+SOC105,Cultural Sociology,2 4,12:00 PM,1:15 PM,SOC 120  
+CHEM201,Analytical Chemistry,1 3 5,9:30 AM,10:30 AM,CHEM 200  
+CS225,Mobile App Development,2 4,4:00 PM,5:15 PM,CS 150  
+LING110,Intro to Syntax,1 3,10:00 AM,11:15 AM,LNG 100  
+GEOG110,Human Geography,2 4,1:00 PM,2:15 PM,GEO 120  
+CS250,Cloud Computing,1 3 5,3:00 PM,4:00 PM,CS 200  
+MATH230,Discrete Math,2 4,8:30 AM,9:45 AM,MATH 150  
+PHYS220,Electromagnetism,1 3,2:30 PM,4:00 PM,PHYS 230  
+CHEM202,Instrumental Analysis,2 4,3:30 PM,4:45 PM,CHEM 250  
+ENG220,Modern Poetry,1 3,12:00 PM,1:15 PM,ENGR 120  
+HIST240,Ancient Rome,2 4,9:30 AM,10:45 AM,HIST 130  
+BIO220,Ecology,1 3 5,10:30 AM,11:30 AM,SC 210  
+PSYC220,Personality Psychology,2 4,2:00 PM,3:15 PM,PSY 230  
+ECON250,Behavioral Economics,1 3,1:30 PM,2:45 PM,ECON 230  
+CS240,Embedded Systems,2 4,11:30 AM,1:00 PM,CS 180  
+ART220,Photography Basics,1 3,9:00 AM,10:15 AM,ART 130  
+PHIL250,Political Philosophy,2 4,12:30 PM,1:45 PM,PHIL 130  
+STAT230,Statistical Modeling,1 3 5,1:00 PM,2:00 PM,MATH 140  
+CS260,Intro to Robotics,2 4,10:00 AM,11:30 AM,CS 200  
+MATH310,Number Theory,1 3,8:00 AM,9:15 AM,MATH 200  
+PHYS250,Thermodynamics,2 4,1:30 PM,2:45 PM,PHYS 250  
+CHEM240,Biochemistry,1 3,11:00 AM,12:30 PM,CHEM 230  
+ENG250,Contemporary Fiction,2 4,2:00 PM,3:15 PM,ENG 130  
+HIST250,History of Medicine,1 3,4:00 PM,5:15 PM,HIS 140  
+BIO260,Neuroscience,2 4,10:00 AM,11:15 AM,SC 240  
+PSYC240,Social Psychology,1 3 5,9:30 AM,10:30 AM,PSY 240  
+ECON260,International Trade,2 4,12:00 PM,1:15 PM,ECN 240  
+CS280,Intro to Data Science,1 3,3:30 PM,5:00 PM,DP 210  
+ART230,Sculpture I,2 4,9:00 AM,10:30 AM,ART 140  
+PHIL260,Aesthetics,1 3,10:30 AM,11:45 AM,PHL 150  
+STAT240,Advanced Statistics,2 4,1:00 PM,2:15 PM,MTH 140  
+CS290,DevOps Foundations,1 3 5,2:00 PM,3:00 PM,DP 220  
+MUS220,Choral Ensemble,2 4,3:30 PM,4:45 PM,MUS 240  
+SOC240,Social Inequality,2 4,8:00 AM,9:15 AM,SOC 150  
+CHEM250,Environmental Chemistry,1 3 5,11:00 AM,12:00 PM,SC 250  
+CS295,Parallel Programming,2 4,4:00 PM,5:30 PM,DP 230  
+LING230,Pragmatics,1 3,1:00 PM,2:15 PM,LNG 150  
+GEOG230,Climate Change,2 4,2:00 PM,3:15 PM,GEO 140  
+CS300,Capstone Project I,1 3,10:00 AM,11:30 AM,DP 300  
+MATH350,Topology,2 4,11:00 AM,12:30 PM,HOH 230  
+PHYS260,Classical Mechanics,2 4,3:30 PM,5:00 PM,MC 230  
+CHEM260,Organic Chemistry Lab,1 3,4:00 PM,6:00 PM,SC 260  
+ENG270,Science Fiction Lit,2 4,1:00 PM,2:15 PM,ENG 140  
+HIST260,Middle East History,1 3 5,1:30 PM,2:30 PM,HIS 150  
+BIO280,Botany,2 4,8:30 AM,10:00 AM,SC 270  
+PSYC250,Abnormal Psychology,1 3,11:30 AM,12:45 PM,PSY 250  
+ECON270,Economics of Health,2 4,10:30 AM,11:45 AM,ECN 250  
+CS310,Big Data Systems,1 3 5,3:00 PM,4:00 PM,DP 240  
+ART240,Visual Design,2 4,2:30 PM,4:00 PM,ART 150  
+PHIL270,Philosophy of Science,1 3,3:00 PM,4:15 PM,PHL 160  
+STAT250,Data Visualization,2 4,9:00 AM,10:30 AM,MTH 150  
+CS315,Blockchain Applications,1 3,1:30 PM,3:00 PM,DP 250  
+MUS230,Electronic Music,2 4,12:30 PM,1:45 PM,MUS 250  
+SOC250,Urban Studies,1 3 5,10:30 AM,11:30 AM,SOC 160  
+CHEM270,Nanochemistry,2 4,11:30 AM,1:00 PM,SC 280  
+CS320,Advanced AI,1 3 5,4:00 PM,5:00 PM,DP 260  
+LING240,Language Acquisition,2 4,1:00 PM,2:30 PM,LNG 160  
+GEOG250,Geospatial Analysis,1 3,2:00 PM,3:30 PM,GEO 150   
