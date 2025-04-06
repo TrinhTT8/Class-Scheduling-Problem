@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <unordered_map>
+#include <vector>
 #include <string>
 using namespace std;
 
@@ -20,5 +21,7 @@ void printClassDetails(const unordered_map<string, ClassInfo>& classes);
 void saveToFile(const unordered_map<string, ClassInfo>& classes, const string& filename);
 void loadFromFile(unordered_map<string, ClassInfo>& classes, const string& filename);
 void addClass(unordered_map<string, ClassInfo>& classes);
+vector<ClassInfo> convertToVector(const unordered_map<string, ClassInfo>& classes);
+unordered_map<string, ClassInfo> convertToMap(const vector<ClassInfo>& classVector);
 
 #endif
