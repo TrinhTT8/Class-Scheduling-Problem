@@ -107,3 +107,21 @@ void addClass(unordered_map<string, ClassInfo>& classes) {
     classes[courseID] = {courseID, name, days, startTime, endTime, location};
     cout << "\nClass added successfully!\n";
 }
+
+// vector conversion
+vector<ClassInfo> convertToVector(const unordered_map<string, ClassInfo>& classes) {
+    vector<ClassInfo> classVector;
+    for (const auto& entry : classes) {
+        classVector.push_back(entry.second);
+    }
+    return classVector;
+}
+
+// map conversion (vector conversion needs to happen first)
+unordered_map<string, ClassInfo> convertToMap(const vector<ClassInfo>& classVector) {
+    unordered_map<string, ClassInfo> classMap;
+    for (const ClassInfo& classInfo : classVector) {
+        classMap[classInfo.courseID] = classInfo;
+    }
+    return classMap;
+}
