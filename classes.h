@@ -23,5 +23,8 @@ void loadFromFile(unordered_map<string, ClassInfo>& classes, const string& filen
 void addClass(unordered_map<string, ClassInfo>& classes);
 vector<ClassInfo> convertToVector(const unordered_map<string, ClassInfo>& classes);
 unordered_map<string, ClassInfo> convertToMap(const vector<ClassInfo>& classVector);
+void removeClass(unordered_map<string, ClassInfo>& classes);
+void filterByCourseID(const unordered_map<string, ClassInfo>& classes, const string& keyword);
+
 
 #endif

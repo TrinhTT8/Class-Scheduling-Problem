@@ -13,11 +13,13 @@ int main() {
 
     int choice = 0;
 
-    while (choice != 4) {
+    while (choice != 6) {
         cout << "\n1. View Class Details\n";
         cout << "2. Add a New Class\n";
         cout << "3. Search for Class by Course ID\n";
-        cout << "4. Exit\n";
+        cout << "4. Remove a Class\n";
+        cout << "5. Filter for Class by Course ID\n";
+        cout << "6. Exit\n";
         cout << "Enter your choice: ";
         cin >> choice;
 
@@ -50,6 +52,16 @@ int main() {
             }
         }
         else if (choice == 4) {
+            removeClass(classDetails);
+            saveToFile(classDetails, filename);
+        }
+        else if (choice == 5) {
+            string keyword;
+            cout << "Enter part of the course ID to search: ";
+            cin >> keyword;
+            filterByCourseID(classDetails, keyword);
+        }
+        else if (choice == 6) {
             cout << "Goodbye!\n";
         }
         else {

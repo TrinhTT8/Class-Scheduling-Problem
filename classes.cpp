@@ -125,3 +125,38 @@ unordered_map<string, ClassInfo> convertToMap(const vector<ClassInfo>& classVect
     }
     return classMap;
 }
+
+//removing a class
+void removeClass(unordered_map<string, ClassInfo>& classes) {
+    string courseID;
+    cout << "Enter course ID to remove: ";
+    cin >> courseID;
+
+    auto it = classes.find(courseID);
+    if (it != classes.end()) {
+        classes.erase(it);
+        cout << "Class removed successfully.\n";
+    } else {
+        cout << "Class not found.\n";
+    }
+}
+
+//filtering a class by Course ID
+void filterByCourseID(const unordered_map<string, ClassInfo>& classes, const string& keyword) {
+    bool found = false;
+
+    for (const auto& [id, info] : classes) {
+        if (info.courseID.find(keyword) != string::npos) {
+            cout << "Course ID: " << info.courseID << endl;
+            cout << "Name: " << info.name << endl;
+            cout << "Days: " << info.days << endl;
+            cout << "Time: " << info.startTime << " - " << info.endTime << endl;
+            cout << "Location: " << info.location << endl;
+            cout << endl;
+            found = true;
+        }
+    }
+    if (!found) {
+        cout << "No classes found with course ID containing \"" << keyword << "\".\n";
+    }
+}
