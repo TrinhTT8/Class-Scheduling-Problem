@@ -1,6 +1,7 @@
 #include "classes.h"
 #include <fstream>
 #include <sstream>
+#include <iomanip>
 
 // display all classes
 void printClassDetails(const unordered_map<string, ClassInfo>& classes) {
@@ -178,7 +179,18 @@ void filterByCourseID(const unordered_map<string, ClassInfo>& classes, const str
         if (info.courseID.find(keyword) != string::npos) {
             cout << "Course ID: " << info.courseID << endl;
             cout << "Name: " << info.name << endl;
-            cout << "Days: " << info.days << endl;
+            cout << "Days: ";
+	    for (int d : info.days) {
+		    switch (d) {
+		        case 1: cout << "Monday "; break;
+		        case 2: cout << "Tuesday "; break;
+		        case 3: cout << "Wednesday "; break;
+		        case 4: cout << "Thursday "; break;
+		        case 5: cout << "Friday "; break;
+		        default: break;
+		    }
+	    }
+	    cout << endl;
             cout << "Time: " << info.startTime << " - " << info.endTime << endl;
             cout << "Location: " << info.location << endl;
             cout << endl;
