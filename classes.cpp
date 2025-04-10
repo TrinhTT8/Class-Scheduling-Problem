@@ -4,7 +4,7 @@
 #include <iomanip>
 
 // display all classes
-void printClassDetails(const unordered_map<string, ClassInfo>& classes) {
+void printClassDetails(const unordered_map<string, vector<ClassInfo>>& classes) {
     if (classes.empty()) {
         cout << "No classes available.\n";
         return;
@@ -12,34 +12,36 @@ void printClassDetails(const unordered_map<string, ClassInfo>& classes) {
 
     cout << "\nClasses:\n";
     for (auto it = classes.begin(); it != classes.end(); ++it) {
-        string courseID = it->second.courseID;
-        string name = it->second.name;
-        int startTime = it->second.startTime;
-        int endTime = it->second.endTime;
-        vector<int> days = it->second.days;
-        string location = it->second.location;
+        for (const auto& info : it->second) {
+            string courseID = info.courseID;
+            string name = info.name;
+            int startTime = info.startTime;
+            int endTime = info.endTime;
+            vector<int> days = info.days;
+            string location = info.location;
 
-        cout << "- " << courseID << " - " << name << "\n";
-        cout << "  Time: " << startTime / 100 << ":" << startTime % 100 
-	//display in HH:MM
-             << " - " << endTime / 100 << ":" << endTime % 100 << "\n"; 
-        cout << "  Days: ";
-        for (int day : days) {
-            switch (day) {
-                case 1: cout << "Monday "; break;
-                case 2: cout << "Tuesday "; break;
-                case 3: cout << "Wednesday "; break;
-                case 4: cout << "Thursday "; break;
-                case 5: cout << "Friday "; break;
-                default: break;
+            cout << "- " << courseID << " - " << name << "\n";
+            cout << "  Time: " << startTime / 100 << ":" << startTime % 100 
+            //display in HH:MM
+                 << " - " << endTime / 100 << ":" << endTime % 100 << "\n"; 
+            cout << "  Days: ";
+            for (int day : days) {
+                switch (day) {
+                    case 1: cout << "Monday "; break;
+                    case 2: cout << "Tuesday "; break;
+                    case 3: cout << "Wednesday "; break;
+                    case 4: cout << "Thursday "; break;
+                    case 5: cout << "Friday "; break;
+                    default: break;
+                }
             }
+            cout << "  Location: " << location << "\n\n";
         }
-        cout << "  Location: " << location << "\n\n";
     }
 }
 
 // save a class directly to file
-void saveToFile(const unordered_map<string, ClassInfo>& classes, const string& filename) {
+void saveToFile(const unordered_map<string, vector<ClassInfo>>& classes, const string& filename) {
     ofstream outFile(filename);
     if (!outFile) {
         cout << "Error: Could not open file for saving.\n";
@@ -48,25 +50,27 @@ void saveToFile(const unordered_map<string, ClassInfo>& classes, const string& f
 
     // iterates through classes and saves to file
     for (auto it = classes.begin(); it != classes.end(); ++it) {
-        string courseID = it->second.courseID;
-        string name = it->second.name;
-        vector<int> days = it->second.days;
-        int startTime = it->second.startTime;
-        int endTime = it->second.endTime;
-        string location = it->second.location;
+        for (const auto& info : it->second) {
+            string courseID = info.courseID;
+            string name = info.name;
+            vector<int> days = info.days;
+            int startTime = info.startTime;
+            int endTime = info.endTime;
+            string location = info.location;
 
-        outFile << courseID << "," << name << ",";
-        for (int day : days) {
-            outFile << day << " ";
+            outFile << courseID << "," << name << ",";
+            for (int day : days) {
+                outFile << day << " ";
+            }
+            outFile << startTime << "," << endTime << "," << location << "\n";
         }
-        outFile << startTime << "," << endTime << "," << location << "\n";
     }
     outFile.close();
     cout << "\nSchedule saved to " << filename << " successfully!\n";
 }
 
 // load classes from a file
-void loadFromFile(unordered_map<string, ClassInfo>& classes, const string& filename) {
+void loadFromFile(unordered_map<string, vector<ClassInfo>>& classes, const string& filename) {
     ifstream inFile(filename);
     if (!inFile) {
         cout << "No classes found in file.\n";
@@ -92,25 +96,20 @@ void loadFromFile(unordered_map<string, ClassInfo>& classes, const string& filen
             days.push_back(day);
         }
 
-        classes[courseID] = {courseID, name, days, startTime, endTime, location};
+        classes[courseID].push_back({courseID, name, days, startTime, endTime, location});
     }
     inFile.close();
     cout << "\nClasses loaded successfully!\n";
 }
 
 // add a new class
-void addClass(unordered_map<string, ClassInfo>& classes) {
+void addClass(unordered_map<string, vector<ClassInfo>>& classes) {
     cin.ignore();
     string courseID, name, daysStr, location;
     int startTime, endTime;
 
     cout << "\nEnter course ID: ";
     getline(cin, courseID);
-
-    if (classes.find(courseID) != classes.end()) {
-        cout << "This course ID already exists. Try a different ID.\n\n";
-        return;
-    }
 
     cout << "Enter class name: ";
     getline(cin, name);
@@ -134,30 +133,32 @@ void addClass(unordered_map<string, ClassInfo>& classes) {
     cout << "Enter location (DP 201): ";
     getline(cin, location);
 
-    classes[courseID] = {courseID, name, days, startTime, endTime, location};
+    classes[courseID].push_back({courseID, name, days, startTime, endTime, location});
     cout << "\nClass added successfully!\n";
 }
 
 // vector conversion
-vector<ClassInfo> convertToVector(const unordered_map<string, ClassInfo>& classes) {
+vector<ClassInfo> convertToVector(const unordered_map<string, vector<ClassInfo>>& classes) {
     vector<ClassInfo> classVector;
     for (const auto& entry : classes) {
-        classVector.push_back(entry.second);
+        for (const auto& info : entry.second) {
+            classVector.push_back(info);
+        }
     }
     return classVector;
 }
 
 // map conversion (vector conversion needs to happen first)
-unordered_map<string, ClassInfo> convertToMap(const vector<ClassInfo>& classVector) {
-    unordered_map<string, ClassInfo> classMap;
+unordered_map<string, vector<ClassInfo>> convertToMap(const vector<ClassInfo>& classVector) {
+    unordered_map<string, vector<ClassInfo>> classMap;
     for (const ClassInfo& classInfo : classVector) {
-        classMap[classInfo.courseID] = classInfo;
+        classMap[classInfo.courseID].push_back(classInfo);
     }
     return classMap;
 }
 
 //removing a class
-void removeClass(unordered_map<string, ClassInfo>& classes) {
+void removeClass(unordered_map<string, vector<ClassInfo>>& classes) {
     string courseID;
     cout << "Enter course ID to remove: ";
     cin >> courseID;
@@ -172,29 +173,31 @@ void removeClass(unordered_map<string, ClassInfo>& classes) {
 }
 
 //filtering a class by Course ID
-void filterByCourseID(const unordered_map<string, ClassInfo>& classes, const string& keyword) {
+void filterByCourseID(const unordered_map<string, vector<ClassInfo>>& classes, const string& keyword) {
     bool found = false;
 
-    for (const auto& [id, info] : classes) {
-        if (info.courseID.find(keyword) != string::npos) {
-            cout << "Course ID: " << info.courseID << endl;
-            cout << "Name: " << info.name << endl;
-            cout << "Days: ";
-	    for (int d : info.days) {
-		    switch (d) {
-		        case 1: cout << "Monday "; break;
-		        case 2: cout << "Tuesday "; break;
-		        case 3: cout << "Wednesday "; break;
-		        case 4: cout << "Thursday "; break;
-		        case 5: cout << "Friday "; break;
-		        default: break;
-		    }
-	    }
-	    cout << endl;
-            cout << "Time: " << info.startTime << " - " << info.endTime << endl;
-            cout << "Location: " << info.location << endl;
-            cout << endl;
-            found = true;
+    for (const auto& [id, classList] : classes) {
+        for (const auto& info : classList) {
+            if (info.courseID.find(keyword) != string::npos) {
+                cout << "Course ID: " << info.courseID << endl;
+                cout << "Name: " << info.name << endl;
+                cout << "Days: ";
+                for (int d : info.days) {
+                    switch (d) {
+                        case 1: cout << "Monday "; break;
+                        case 2: cout << "Tuesday "; break;
+                        case 3: cout << "Wednesday "; break;
+                        case 4: cout << "Thursday "; break;
+                        case 5: cout << "Friday "; break;
+                        default: break;
+                    }
+                }
+                cout << endl;
+                cout << "Time: " << info.startTime << " - " << info.endTime << endl;
+                cout << "Location: " << info.location << endl;
+                cout << endl;
+                found = true;
+            }
         }
     }
     if (!found) {
