@@ -71,7 +71,7 @@ int main() {
             saveToFile(classDetails, filename);
         }
         else if (choice == 5) {
-            //option to generating a schedule
+            //option for generating a schedule
             int numCourses;
             vector<string> desiredCourseIDs;
             int startTime, endTime;

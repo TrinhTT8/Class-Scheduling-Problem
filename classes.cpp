@@ -175,7 +175,7 @@ void removeClass(unordered_map<string, vector<ClassInfo>>& classes) {
     }
 }
 
-//filtering a class by Course ID
+//Function for generating a schedule
 vector<ClassInfo> filterByMultipleCriteria(
     const unordered_map<string, vector<ClassInfo>>& classes,  
     const vector<string>& desiredCourseIDs,
@@ -216,7 +216,7 @@ vector<ClassInfo> filterByMultipleCriteria(
 }
 
 
-//for converting user input in uppercase
+//for converting user input to uppercase
 string toUpper(const string& str) {
     string result = str;
     for (char& c : result) {
