@@ -23,7 +23,15 @@ void loadFromFile(unordered_map<string, vector<ClassInfo>>& classes, const strin
 void addClass(unordered_map<string, vector<ClassInfo>>& classes);
 vector<ClassInfo> convertToVector(const unordered_map<string, vector<ClassInfo>>& classes);
 unordered_map<string, vector<ClassInfo>> convertToMap(const vector<ClassInfo>& classVector);
+string toUpper(const string& str);
 void removeClass(unordered_map<string, vector<ClassInfo>>& classes);
-void filterByCourseID(const unordered_map<string, vector<ClassInfo>>& classes, const string& keyword);
+vector<ClassInfo> filterByMultipleCriteria(
+    const unordered_map<string, vector<ClassInfo>>& classes,
+    const vector<string>& desiredCourseIDs,
+    int preferredStartTime,
+    int preferredEndTime,
+    const vector<int>& preferredDays
+);
+
 
 #endif
