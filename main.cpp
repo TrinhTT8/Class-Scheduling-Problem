@@ -18,7 +18,7 @@ int main() {
         cout << "2. Add a New Class\n";
         cout << "3. Search for Class by Course ID\n";
         cout << "4. Remove a Class\n";
-        cout << "5. Filter for Class by Course ID\n";
+        cout << "5. Generate schedule\n";
         cout << "6. Exit\n";
         cout << "Enter your choice: ";
         cin >> choice;

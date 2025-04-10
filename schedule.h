@@ -17,9 +17,13 @@ using namespace std;
 
 class Schedule
 {
-public:
-    // Need to pass the filterClasses vector
-    static vector<ClassInfo>greedySchedule(vector<ClassInfo> &classinfo);
+    private: 
+    vector<ClassInfo> selectedClasses;
+
+    public:
+        // Need to pass the filterClasses vector
+        static vector<vector<ClassInfo>>greedySchedule(vector<ClassInfo> &classinfo);
+        void printSchedule(vector<ClassInfo> selectedClasses);
 };
 
 #endif SCHEDULE.H;
