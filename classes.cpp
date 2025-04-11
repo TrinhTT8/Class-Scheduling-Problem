@@ -2,6 +2,9 @@
 #include <fstream>
 #include <sstream>
 #include <iomanip>
+#include <cctype>
+
+using namespace std;
 
 // display all classes
 void printClassDetails(const unordered_map<string, vector<ClassInfo>>& classes) {
@@ -172,35 +175,53 @@ void removeClass(unordered_map<string, vector<ClassInfo>>& classes) {
     }
 }
 
-//filtering a class by Course ID
-void filterByCourseID(const unordered_map<string, vector<ClassInfo>>& classes, const string& keyword) {
-    bool found = false;
+//Function for generating a schedule
+vector<ClassInfo> filterByMultipleCriteria(
+    const unordered_map<string, vector<ClassInfo>>& classes,  
+    const vector<string>& desiredCourseIDs,
+    int preferredStartTime,
+    int preferredEndTime,
+    const vector<int>& preferredDays
+) {
+    vector<ClassInfo> result;
 
     for (const auto& [id, classList] : classes) {
-        for (const auto& info : classList) {
-            if (info.courseID.find(keyword) != string::npos) {
-                cout << "Course ID: " << info.courseID << endl;
-                cout << "Name: " << info.name << endl;
-                cout << "Days: ";
-                for (int d : info.days) {
-                    switch (d) {
-                        case 1: cout << "Monday "; break;
-                        case 2: cout << "Tuesday "; break;
-                        case 3: cout << "Wednesday "; break;
-                        case 4: cout << "Thursday "; break;
-                        case 5: cout << "Friday "; break;
-                        default: break;
-                    }
-                }
-                cout << endl;
-                cout << "Time: " << info.startTime << " - " << info.endTime << endl;
-                cout << "Location: " << info.location << endl;
-                cout << endl;
-                found = true;
+        for (const ClassInfo& info : classList) {
+            // Course ID must match
+            if (find(desiredCourseIDs.begin(), desiredCourseIDs.end(), info.courseID) == desiredCourseIDs.end()) {
+                continue;
             }
+
+            // Time must match
+            if (info.startTime < preferredStartTime || info.endTime > preferredEndTime) {
+                continue;
+            }
+
+            // All class days must be in preferredDays
+            bool validDays = true;
+            for (int day : info.days) {
+                if (find(preferredDays.begin(), preferredDays.end(), day) == preferredDays.end()) {
+                    validDays = false;
+                    break;
+                }
+            }
+
+            if (!validDays) continue;
+
+            result.push_back(info); 
         }
     }
-    if (!found) {
-        cout << "No classes found with course ID containing \"" << keyword << "\".\n";
-    }
+
+    return result;
 }
+
+
+//for converting user input to uppercase
+string toUpper(const string& str) {
+    string result = str;
+    for (char& c : result) {
+        c = toupper(c);
+    }
+    return result;
+}
+

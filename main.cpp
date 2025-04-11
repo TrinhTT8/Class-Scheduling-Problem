@@ -1,6 +1,7 @@
 #include <iostream>
 #include <unordered_map>
 #include "classes.h"
+#include<cctype>
 
 using namespace std;
 
@@ -33,6 +34,7 @@ int main() {
             saveToFile(classDetails, filename);
         } 
         else if (choice == 3) {
+            //filtering the classes with specific courseID
             string searchID;
             cout << "Enter course ID: ";
             cin.ignore();
@@ -64,16 +66,63 @@ int main() {
         }
 
         else if (choice == 4) {
+            //option to remove class
             removeClass(classDetails);
             saveToFile(classDetails, filename);
         }
         else if (choice == 5) {
-            string keyword;
-            cout << "Enter part of the course ID to search: ";
-            cin >> keyword;
-            filterByCourseID(classDetails, keyword);
+            //option for generating a schedule
+            int numCourses;
+            vector<string> desiredCourseIDs;
+            int startTime, endTime;
+            vector<int> preferredDays;
+
+            cout << "How many courses do you want the schedule for? ";
+            cin >> numCourses;
+            cout << "Enter course IDs:\n";
+            for (int i = 0; i < numCourses; ++i) {
+                string id;
+                cin >> id;
+                desiredCourseIDs.push_back(toUpper(id));
+            }
+
+            cout << "Enter preferred start time (e.g., 900 for 9:00 AM): ";
+            cin >> startTime;
+            cout << "Enter preferred end time (e.g., 1400 for 2:00 PM): ";
+            cin >> endTime;
+          
+            int day;
+            cout << "Enter preferred days (e.g., 1 3 5), then press Enter: ";
+            while (cin >> day) {
+                preferredDays.push_back(day);
+                if (cin.peek() == '\n') break;  
+            }
+
+            vector<ClassInfo> filtered = filterByMultipleCriteria(classDetails, desiredCourseIDs, startTime, endTime, preferredDays);
+
+            cout << "\nFiltered Classes:\n";
+            cout << endl;
+            for (const ClassInfo& c : filtered) {
+                cout << "Course ID: " << c.courseID << "\n";
+                cout << "Name: " << c.name << "\n";
+                cout << "Time: " << c.startTime << " - " << c.endTime << "\n";
+                cout << "Days: ";
+                for (int d : c.days) {
+                    switch (d) {
+                        case 1: cout << "Monday "; break;
+                        case 2: cout << "Tuesday "; break;
+                        case 3: cout << "Wednesday "; break;
+                        case 4: cout << "Thursday "; break;
+                        case 5: cout << "Friday "; break;
+                        default: cout << "Unknown "; break;
+                    }
+                }
+                cout << "\nLocation: " << c.location << "\n";
+                cout << "------------------------\n";
+            }
         }
         else if (choice == 6) {
+            //option for exiting the menu
             cout << "Goodbye!\n";
         }
         else {
