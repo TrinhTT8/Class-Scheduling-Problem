@@ -30,7 +30,12 @@
 
 ## How To Run The Program
 
+Compiling the program:
 ```bash
 g++ main.cpp classes.cpp schedule.cpp -o scheduler
+```
+
+Executing the program:
+```bash
 ./scheduler
 ```
