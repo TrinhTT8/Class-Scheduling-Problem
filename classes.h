@@ -7,7 +7,8 @@
 #include <string>
 using namespace std;
 
-struct ClassInfo {
+struct ClassInfo
+{
     string courseID;
     string name;
     vector<int> days; // 1 for Monday, 2 for Tuesday, etc until 5 is Friday
@@ -17,21 +18,19 @@ struct ClassInfo {
 };
 
 // functions
-void printClassDetails(const unordered_map<string, vector<ClassInfo>>& classes);
-void saveToFile(const unordered_map<string, vector<ClassInfo>>& classes, const string& filename);
-void loadFromFile(unordered_map<string, vector<ClassInfo>>& classes, const string& filename);
-void addClass(unordered_map<string, vector<ClassInfo>>& classes);
-vector<ClassInfo> convertToVector(const unordered_map<string, vector<ClassInfo>>& classes);
-unordered_map<string, vector<ClassInfo>> convertToMap(const vector<ClassInfo>& classVector);
-string toUpper(const string& str);
-void removeClass(unordered_map<string, vector<ClassInfo>>& classes);
+void printClassDetails(const unordered_map<string, vector<ClassInfo>> &classes);
+void saveToFile(const unordered_map<string, vector<ClassInfo>> &classes, const string &filename);
+void loadFromFile(unordered_map<string, vector<ClassInfo>> &classes, const string &filename);
+void addClass(unordered_map<string, vector<ClassInfo>> &classes);
+vector<ClassInfo> convertToVector(const unordered_map<string, vector<ClassInfo>> &classes);
+unordered_map<string, vector<ClassInfo>> convertToMap(const vector<ClassInfo> &classVector);
+string toUpper(const string &str);
+void removeClass(unordered_map<string, vector<ClassInfo>> &classes);
 vector<ClassInfo> filterByMultipleCriteria(
-    const unordered_map<string, vector<ClassInfo>>& classes,
-    const vector<string>& desiredCourseIDs,
+    const unordered_map<string, vector<ClassInfo>> &classes,
+    const vector<string> &desiredCourseIDs,
     int preferredStartTime,
     int preferredEndTime,
-    const vector<int>& preferredDays
-);
-
+    const vector<int> &preferredDays);
 
 #endif

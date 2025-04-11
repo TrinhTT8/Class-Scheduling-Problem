@@ -5,10 +5,10 @@
     4. Should have multiple schedules for the users to examine*/
 
 // Need a sorted vector
-// Separate by days and sort by time 
+// Separate by days and sort by time
 
-#ifndef SCHEDULE.H
-#define SCHEDULE .H
+#ifndef SCHEDULE_H
+#define SCHEDULE_H
 
 #include "classes.h"
 #include <vector>
@@ -17,13 +17,13 @@ using namespace std;
 
 class Schedule
 {
-    private: 
+private:
     vector<ClassInfo> selectedClasses;
 
-    public:
-        // Need to pass the filterClasses vector
-        static vector<vector<ClassInfo>>greedySchedule(vector<ClassInfo> &classinfo);
-        void printSchedule(vector<ClassInfo> selectedClasses);
+public:
+    // Need to pass the filterClasses vector
+    static vector<vector<ClassInfo>> greedySchedule(vector<ClassInfo> &classinfo);
+    void printSchedule(const vector<ClassInfo> &selectedClasses);
 };
 
-#endif SCHEDULE.H;
+#endif

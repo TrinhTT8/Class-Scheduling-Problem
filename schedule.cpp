@@ -2,61 +2,69 @@
 #include <unordered_map>
 #include <string>
 #include <vector>
+#include <random>
 #include "schedule.h"
 
 using namespace std;
 
-// Use Greedy Algorithm to select non-overlapping classes
-vector<vector<ClassInfo>> Schedule::greedySchedule(vector<ClassInfo> &classes)
+vector<vector<ClassInfo>> Schedule::greedySchedule(vector<ClassInfo> &filtered)
 {
     vector<vector<ClassInfo>> allSchedules;
-    vector<ClassInfo> selectedClasses;
-    unordered_map<int, int> previousClassEndTime;     // Store the day and end time of the class
-    unordered_map<string, bool> scheduledCourseNames; // Track already scheduled course names
+    int numAttempts = 3; // Try 3 different random greedy schedules
 
-    // Loop through all classes in the classes vector
-    for (auto it = classes.begin(); it != classes.end();)
+    for (int attempt = 0; attempt < numAttempts; ++attempt)
     {
-        ClassInfo &c = *it;   // Get the current class
-        bool suitable = true; // boolean to check if the class does overlap
+        vector<ClassInfo> shuffled = filtered; // Copy original
+        random_device rd;
+        mt19937 g(rd());
+        shuffle(shuffled.begin(), shuffled.end(), g);   // Shuffle the vectors of filtered classes to obtain different schedules
+        // Or else the algorithm always pick the first valid options 
 
-        // Skip if this course name has already been scheduled
-        if (scheduledCourseNames.find(c.name) != scheduledCourseNames.end())
-        {
-            it = classes.erase(it); // Remove this class and continue
-            continue;               // Skip the class if it's already in the schedule
-        }
+        vector<ClassInfo> selectedClasses;
+        unordered_map<int, int> previousClassEndTime;
+        unordered_map<string, bool> scheduledCourseNames;
 
-        // Looping through the days of the class (if the sections happen on more than one day)
-        for (int day : c.days)
+        for (const ClassInfo &c : shuffled)
         {
-            if (c.startTime < previousClassEndTime[day])
-            {                     // Check for overlap on that specific day
-                suitable = false; // the class cannot be scheduled due to time conflict
-                break;
-            }
-        }
+            // Skip the class if the same course name has already been scheduled 
+            if (scheduledCourseNames[c.name])
+                continue;
 
-        // If no overlap, select the class and update previousClassEndTime
-        if (suitable)
-        {
-            selectedClasses.push_back(c);
-            scheduledCourseNames[c.name] = true; // Mark the course name as scheduled
+            bool suitable = true;
+
+            // Make sure if the class happens on a specific day, it will take place after the previous class
             for (int day : c.days)
             {
-                previousClassEndTime[day] = c.endTime; // Update the end time for the specific day
+                if (c.startTime < previousClassEndTime[day])
+                {
+                    suitable = false;
+                    break;
+                }
             }
+
+            // Add to schedule if suitable
+            if (suitable)
+            {
+                selectedClasses.push_back(c);
+                scheduledCourseNames[c.name] = true;
+                for (int day : c.days)
+                {
+                    previousClassEndTime[day] = c.endTime;
+                }
+            }
+        }
+
+        if (!selectedClasses.empty())
+        {
+            allSchedules.push_back(selectedClasses);
         }
     }
 
-    // Add the selected classes as a new schedule
-    allSchedules.push_back(selectedClasses);
-
-    return allSchedules; // Return all schedules found
+    return allSchedules;
 }
 
 // Print out all the suggested schedules (if applicable)
-void printSchedule(const vector<ClassInfo> &selectedClasses)
+void Schedule::printSchedule(const vector<ClassInfo> &selectedClasses)
 {
     int i = 0;
     string startT, endT;
@@ -89,11 +97,21 @@ void printSchedule(const vector<ClassInfo> &selectedClasses)
             }
         }
 
+        // Convert start time and end time to strings
         startT = to_string(c.startTime);
         endT = to_string(c.endTime);
 
+        if (startT.length() < 4)
+        {
+            startT = "0" + startT;
+        }
+        if (endT.length() < 4)
+        {
+            endT = "0" + endT;
+        }
+
         // Parse the string to format how the time usually looks (e.g. 10:30, 08:30, etc.)
-        cout << ", Time: " << startT[0] + startT[1] << ":" << startT[2] + startT[3] << "-" << endT[0] + endT[1] << ":" << endT[2] + endT[3];
+        cout << ", Time: " << startT.substr(0, 2) << ":" << startT.substr(2, 2) << "-" << endT.substr(0, 2) << ":" << endT.substr(2, 2);
         cout << ", Location: " << c.location << endl;
     }
 }
