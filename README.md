@@ -39,3 +39,11 @@ Executing the program:
 ```bash
 ./scheduler
 ```
+
+<p>Please refer to classes.txt when testing the "generate schedule" option.</p>
+<p>Expected user inputs:</p>
+<ul>
+  <li><i>Classes input</i> - Input will accept both lowercase and uppercase, please refer to all classes in <b>classes.txt</b>.</li>
+  <li><i>Time input</i> - Input cannot have ":" and must be in the format of 24 hours o'clock (ex: 2000, 2100, 2200, etc.).</li>
+  <li><i>Day input</i> - Input must be numerical values, separated by spaces if entering multiple days (ex: 1 2 3 or 2 4 6, etc.).</li>
+</ul>
